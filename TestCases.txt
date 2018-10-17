@@ -1,0 +1,46 @@
+﻿WalletService :
+
+1)	    Public addCustomer(String Name, String mobile, BigInteger amount) :
+
+		Given Customer details to save 
+		When name as Customer1, Mobile number as 8652465192, amount as 0, Customer with given name and mobile number not exist 
+		Then create new customer
+		Given Customer details to save/update
+		When name as Customer2, Mobile number as 1245632157, amount as 4000, Customer with given name and mobile number exist 
+		Then update customer
+		Given Customer details to save/update
+		When name is Null , Mobile number as 1245632158, amount as 2000, Customer with given name and mobile number not exist 
+		Then abort save operation with error message that ‘Name cannot be blank’
+		Given Customer details to save/update
+		When name is Customer3 , Mobile number as blank/Null, amount as 2000, Customer with given name and mobile number not exist 
+		Then abort save operation with error message that ‘Mobile number cannot be blank’
+		Given Customer details to save/update
+        	When name is Customer4, Mobile number as 1245A63215, amount as 2000, Customer with given name and mobile number not exist 
+           	Then abort save operation with error message that ‘Mobile number cannot be Alphanumeric’
+		Given Customer details to save/update
+		When name is Customer6 , Mobile number as 12458888863215, amount as 2000, Customer with given name and mobile number not exist 
+		Then abort save operation with error message that ‘Mobile number cannot be greater of 10 digits’
+		Given Customer details to save/update
+		When name is Customer6 , Mobile number as 12215, amount as 2000, Customer with given name and mobile number not exist 
+		Then abort save operation with error message that ‘Mobile number cannot be less than 10 digits’
+		Given Customer details to save/update
+		When name is Customer6 , Mobile number as 1221552465, amount as Null, Customer with given name and mobile number not exist 
+		Then abort save operation with error message that ‘Amount cannot be null’
+
+
+2)	  Public Customer showBalance(String Mobile) :
+		Given mobile number of get Customer
+		When Mobile number as 1245632156 and customer exist
+		Then give Customer details having given mobile number
+		Given mobile number of get Customer
+		When Mobile number is 1245632333 and customer with given number does not exist
+		Then give message that ‘Customer with given mobile number does not exist’
+		Given mobile number of get Customer
+		When Mobile number is 124563A2333
+		Then give error message that ‘Mobile number cannot be alphanumeric’
+		Given mobile number of get Customer
+		When Mobile number is 12456355555552333
+		Then give error message that ‘Mobile number cannot be greater of 10 digits’
+		Given mobile number of get Customer
+		When Mobile number is 124563
+		Then give error message that ‘Mobile number cannot be less than 10 digits’
